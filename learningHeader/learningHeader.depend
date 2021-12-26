@@ -62,7 +62,8 @@
 	<unicode/utf16.h>
 	<math.h>
 
-1640277452 source:/home/j/Git/onboarding/learningHeader/main.cpp
+1640541111 source:/home/j/Git/onboarding/learningHeader/main.cpp
+	<stdio.h>
 	<iostream>
 	<sqlite3.h>
 
