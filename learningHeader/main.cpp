@@ -39,14 +39,15 @@ int main()
 
 
     string char_name;
-    int char_level;
-    int char_age;
-    string char_realm;
-    string char_class;
+    string char_level = "3";
+    string char_age = "33";
+    string char_realm = "third";
+    string char_class = "triologist";
     cout << "Let's Make a Character! \n Enter your Character's Name:" << endl;
     cin >> char_name;
     cout << "you entered " << char_name << endl;
-    cout << "what follows is the table itself, which does not yet contain the values entered by the user" << endl;
+
+    cout << "what follows is the table itself, which does not yet contain the values entered by the user" + char_name << endl;
 
 
     //the table is created here, but I am still learning how to transfer the C variables into the database.
@@ -57,12 +58,24 @@ int main()
 
 	pSQL[2] = "insert into myTable (CharName, Level, Age, Realm, Class) values ('Lucky', 1, 41, 'Weird', 'Chaos Priest')";
 
+//creating the user entry
+    //creating a new string to hold the value.
+    //string strSQL;
+    //strSQL =
+    //strSQL =  + char_name + "', " + char_level + ", " + char_age + ", '" + char_realm + "', '" + char_class +"')";
+    string stringSQL;
+    //stringSQL = "insert into myTable (CharName, Level, Age, Realm, Class) values ('" + char_name+ "', " + char_level + ", " + char_age + ", '" + char_realm + "', '" + char_class +"')";
 
-	pSQL[3] = "select * from myTable";
+    stringSQL = "insert into myTable (CharName, Level, Age, Realm, Class) values ('" + char_name+ "', " + char_level + ", " + char_age + ", '" + char_realm + "', '" + char_class + "')";
 
-	pSQL[4] = "delete from myTable";
+    cout << stringSQL << endl;
+    pSQL[3] = stringSQL.c_str();
 
-	pSQL[5] = "drop table myTable";
+	pSQL[4] = "select * from myTable";
+
+	pSQL[5] = "delete from myTable";
+
+	pSQL[6] = "drop table myTable";
 
 	for(int i = 0; i < STATEMENTS; i++)
 	{
@@ -74,6 +87,8 @@ int main()
 			break;
 		}
 	}
+
+
 
     // Close the connection
     sqlite3_close(tom);
