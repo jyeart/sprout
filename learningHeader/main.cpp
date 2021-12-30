@@ -2,7 +2,37 @@
 #include <iostream>
 #include <sqlite3.h>
 
+
+//using this for now to make it quicker, will take out in final version
 using namespace std;
+
+//
+//class MyClass {        // The class
+//  public:              // Access specifier
+//    void myMethod() {  // Method/function defined inside the class
+//      cout << "Hello World!";
+//    }
+//};
+//
+//int main() {
+//  MyClass myObj;     // Create an object of MyClass
+//  myObj.myMethod();  // Call the method
+//  return 0;
+//}
+
+
+//SQlite callback function
+
+
+
+//creation of the input class
+
+//class MyClass {        // The class
+//  public:              // Access specifier
+//    void myMethod() {  // Method/function defined inside the class
+//      cout << "Hello World!";
+//    }
+//};
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 {
@@ -14,14 +44,73 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 	cout<<"\n";
 	return 0;
 }
-int main()
+
+
+
+//lets give this class a method by which it will ask for the data from the user, collect that data, create a database if none exists, and add the information collected to said database.
+class player {
+
+static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 {
-    const int STATEMENTS = 8;
+	int i;
+	for(i=0; i<argc; i++)
+	{
+		cout<<azColName[i]<<" = " << (argv[i] ? argv[i] : "NULL")<<"\n";
+	}
+	cout<<"\n";
+	return 0;
+}
+
+
+
+
+    public:
+
+    void start(){
+//code was moved into object.
+
+    //creating an instance and calling the method
+    //player tomRiddle;
+    //tomRiddle.start();
+
+      // for holding the SQlite formatted string.
+    string stringSQL;
+ //variables, eventually will need to specify different data types, for now, the strings are functional, but I want to be able to put in different data types. Not sure if that is possible - if sqlite requires char formats...
+    string char_name;
+    string char_level;
+    string char_age;
+    string char_realm;
+    string char_class;
+
+
+
+    //methods
+
+    //changing the method to incorporate the database creation etc.
+
+
+cout << "Let's Make a Character! \n Enter your Character's Name:" << endl;
+    cin >> char_name;
+    cout << "What is their level?" << endl;
+    cin >> char_level;
+        cout << "How old are they?" << endl;
+    cin >> char_age;
+    cout << "From what realm do they haileth?" << endl;
+    cin >> char_realm;
+    cout << "And what is their occupation?" << endl;
+    cin >> char_class;
+// now filling the variable so that its format is one that will make sense to the database.
+
+stringSQL = "insert into myTable (CharName, Level, Age, Realm, Class) values ('" + char_name+ "', " + char_level + ", " + char_age + ", '" + char_realm + "', '" + char_class + "')";
+
+// just a print test to make sure formatting is good. Will need
+    cout << stringSQL << endl;
+
+    //here is the additional code to enter the stuff into database.
+    const int STATEMENTS = 3;
     sqlite3* tom;
     char *zErrMsg = 0;
     const char *pSQL[STATEMENTS];
-
-
 
     int open = 0;
     open = sqlite3_open("riddle.db", &tom);
@@ -36,56 +125,14 @@ int main()
         std::cout << "Opened Database Successfully!" << std::endl;
     }
 
-
-//here is where all the values that will be placed in the database are being initialized, and the user is asked for input. Eventually this will all be a function inside of an object... a method I believe it is called. For now, all the program will be proceedural.
-
-    //intitializing the holder variable for the data that follows. This will be in a format that SQlite will understand.
-    string stringSQL;
-
-    string char_name;
-    string char_level = "3";
-    string char_age = "33";
-    string char_realm = "third";
-    string char_class = "triologist";
-    cout << "Let's Make a Character! \n Enter your Character's Name:" << endl;
-    cin >> char_name;
-    cout << "What is their level?" << endl;
-    cin >> char_level;
-        cout << "How old are they?" << endl;
-    cin >> char_age;
-    cout << "From what realm do they haileth?" << endl;
-    cin >> char_realm;
-    cout << "And what is their occupation?" << endl;
-    cin >> char_class;
-
-    // now filling the variable so that its format is one that will make sense to the database.
-
-stringSQL = "insert into myTable (CharName, Level, Age, Realm, Class) values ('" + char_name+ "', " + char_level + ", " + char_age + ", '" + char_realm + "', '" + char_class + "')";
-
-// just a print test to make sure formatting is good. Will need
-    cout << stringSQL << endl;
-
-
-    //the table is created here, but I am still learning how to transfer the C variables into the database.
-
     pSQL[0] = "CREATE TABLE IF NOT EXISTS myTable (CharName varchar(30), Level smallint, Age smallint, Realm varchar(30), Class varchar(30))";
-
-	pSQL[1] = "insert into myTable (CharName, Level, Age, Realm, Class) values ('Tom', 1, 22, 'Morland', 'Rogue, Haha')";
-
-	pSQL[2] = "insert into myTable (CharName, Level, Age, Realm, Class) values ('Lucky', 1, 41, 'Weird', 'Chaos Priest')";
+pSQL[1] = stringSQL.c_str();
+    pSQL[2] = "select * from myTable";
 
 
-// here is the user entered information.
-    pSQL[3] = stringSQL.c_str();
-
-	pSQL[4] = "select * from myTable";
-
-	//pSQL[5] = "delete from myTable";
-
-	//pSQL[6] = "drop table myTable";
-
-	for(int i = 0; i < STATEMENTS; i++)
+    	for(int i = 0; i < STATEMENTS; i++)
 	{
+	//the exec statement takes the pSQL char const and inputs it into the database.
 		open = sqlite3_exec(tom, pSQL[i], callback, 0, &zErrMsg);
 		if( open!=SQLITE_OK )
 		{
@@ -100,5 +147,24 @@ stringSQL = "insert into myTable (CharName, Level, Age, Realm, Class) values ('"
     // Close the connection
     sqlite3_close(tom);
 
+    //return stringSQL;
+
+
+}
+
+};
+
+int main()
+{
+
+
+player tom;
+tom.start();
+
+
+
+
+
     return (0);
 }
+
