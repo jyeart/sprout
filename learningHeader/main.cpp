@@ -6,34 +6,6 @@
 //using this for now to make it quicker, will take out in final version
 using namespace std;
 
-//
-//class MyClass {        // The class
-//  public:              // Access specifier
-//    void myMethod() {  // Method/function defined inside the class
-//      cout << "Hello World!";
-//    }
-//};
-//
-//int main() {
-//  MyClass myObj;     // Create an object of MyClass
-//  myObj.myMethod();  // Call the method
-//  return 0;
-//}
-
-
-//SQlite callback function
-
-
-
-//creation of the input class
-
-//class MyClass {        // The class
-//  public:              // Access specifier
-//    void myMethod() {  // Method/function defined inside the class
-//      cout << "Hello World!";
-//    }
-//};
-
 static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 {
 	int i;
@@ -49,19 +21,6 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 
 //lets give this class a method by which it will ask for the data from the user, collect that data, create a database if none exists, and add the information collected to said database.
 class Player {
-
-//static int callback(void *NotUsed, int argc, char **argv, char **azColName)
-//{
-//	int i;
-//	for(i=0; i<argc; i++)
-//	{
-//		cout<<azColName[i]<<" = " << (argv[i] ? argv[i] : "NULL")<<"\n";
-//	}
-//	cout<<"\n";
-//	return 0;
-//}
-
-
 
 
     public:
@@ -87,15 +46,11 @@ class Player {
     char_realm = realm;
     char_class = c_class;
    std::cout << "Instance of constructed class created!"<< std::endl;
-    //just a print to test whether the data got entered.
-
-    std::cout << char_name;
-    std::cout << char_class;
 
     stringSQL = "insert into myTable (CharName, Level, Age, Realm, Class) values ('" + char_name+ "', " + char_level + ", " + char_age + ", '" + char_realm + "', '" + char_class + "')";
 
-// just a print test to make sure formatting is good. Will need
-    cout << stringSQL << endl;
+// just a print test to make sure formatting is good.
+    //cout << stringSQL << endl;
 
     //here is the additional code to enter the stuff into database.
     const int STATEMENTS = 2;
@@ -143,19 +98,9 @@ class Player {
 
     }
 
+
+    //this method is used to put in custom input
     void start(){
-//code was moved into object.
-
-    //creating an instance and calling the method
-    //player tomRiddle;
-    //tomRiddle.start();
-
-
-
-
-    //methods
-
-    //changing the method to incorporate the database creation etc.
 
 
 cout << "Let's Make a Character! \n Enter your Character's Name:" << endl;
@@ -173,7 +118,7 @@ cout << "Let's Make a Character! \n Enter your Character's Name:" << endl;
 stringSQL = "insert into myTable (CharName, Level, Age, Realm, Class) values ('" + char_name+ "', " + char_level + ", " + char_age + ", '" + char_realm + "', '" + char_class + "')";
 
 // just a print test to make sure formatting is good. Will need
-    cout << stringSQL << endl;
+    //cout << stringSQL << endl;
 
     //here is the additional code to enter the stuff into database.
     const int STATEMENTS = 2;
@@ -271,7 +216,7 @@ int main()
 
 
 
-
+//Do you want to make a character query
 char createQuery;
 
 
@@ -284,7 +229,7 @@ Player tom;
 tom.start();}
 break;
 case 'n':
-{Player bob("mr.Default2", "99", "103", "defaultia", "defaulter");
+{Player bob("mr.Default3", "99", "103", "defaultia", "defaulter");
 }
 break;
 default:
