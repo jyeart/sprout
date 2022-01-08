@@ -225,11 +225,18 @@ std::cin >> createQuery;
 
 switch (createQuery){
 case 'y':{
-Player tom;
-tom.start();}
+//delcaration of pointer variables
+Player *playerCharacter;
+playerCharacter = new Player;
+playerCharacter->start();
+delete playerCharacter;
+}
 break;
 case 'n':
-{Player bob("mr.Default3", "99", "103", "defaultia", "defaulter");
+{
+Player *playerCharacter;
+playerCharacter = new Player("mr.Default3", "99", "103", "defaultia", "defaulter");
+delete playerCharacter;
 }
 break;
 default:
