@@ -217,11 +217,11 @@ int main()
 
 
 //Do you want to make a character query
-char createQuery;
+char createQuery = 'y';
 
 
 std::cout << "Would you like to create a character? (y/n)"<< std::endl;
-std::cin >> createQuery;
+//std::cin >> createQuery;
 
 switch (createQuery){
 case 'y':{
