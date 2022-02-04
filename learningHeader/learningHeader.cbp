@@ -42,6 +42,7 @@
 		</Unit>
 		<Unit filename="sqlite3.h" />
 		<Unit filename="sqlite3ext.h" />
+		<Unit filename="sqlite_orm.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
