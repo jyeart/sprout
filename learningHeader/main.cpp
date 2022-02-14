@@ -285,10 +285,19 @@ std::cin >> createQuery;
     storage.insert(Employee{
         -1,
         "Allen",
-        25,
+        28,
         "Texas",
         15000.00,
     });
+
+    storage.insert(Employee{
+        -1,
+        "APllen",
+        28,
+        "Texas",
+        15000.00,
+    });
+
 
     DetailedEmployee teddy;
     teddy.name = "Teddy";

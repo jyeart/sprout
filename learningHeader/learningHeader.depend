@@ -62,10 +62,11 @@
 	<unicode/utf16.h>
 	<math.h>
 
-1644336639 source:/home/j/Git/onboarding/learningHeader/main.cpp
+1644338224 source:/home/j/Git/onboarding/learningHeader/main.cpp
 	<stdio.h>
 	<iostream>
-	<sqlite3.h>
+	"sqlite3.h"
+	"sqlite_orm.h"
 
 1638025524 source:/home/j/Git/onboarding/learningHeader/sqlite3.c
 	<vxWorks.h>
